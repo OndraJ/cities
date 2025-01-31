@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'app.urls'
+
+TEMPLATES_DIR = BASE_DIR / 'templates'
 
 TEMPLATES = [
     {
