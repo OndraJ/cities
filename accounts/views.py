@@ -21,4 +21,4 @@ class UserLoginView(LoginView):
     form_class = AuthenticationForm
 
     def get_success_url(self):
-        return reverse_lazy("core:home")
+        return reverse_lazy("dashboard:home")

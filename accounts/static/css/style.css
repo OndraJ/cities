@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-container {
+    background-image: url('../images/login_city.jpg');
+}
+
+.register-container {
+    background-image: url('../images/register_city.jpg');
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.errorlist {
+    color: rgba(255, 0, 0, 0.8);
+}
+
+button {
+    background-color: #a6379c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #71266a;
+}
+
+
+label {
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    /*padding: 10px;*/
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}

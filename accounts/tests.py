@@ -46,7 +46,7 @@ class UserRegistrationTestCase(TestCase):
         email = "testuser@test.com"
         password = "testpassword"
         User.objects.create_user("testuser", email, password)
-        #TODO: Try to figure out how to use "email" instead of "username" to login,
+        # TODO: Try to figure out how to use "email" instead of "username" to login,
         # as I have set the USERNAME_FIELD to "email" in the User model
         response = self.client.post(
             reverse("accounts:login"),
