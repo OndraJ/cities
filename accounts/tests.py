@@ -41,3 +41,16 @@ class UserRegistrationTestCase(TestCase):
 
         users = User.objects.all()
         self.assertEqual(users.count(), 1)
+
+    def test_user_can_login(self):
+        email = "testuser@test.com"
+        password = "testpassword"
+        User.objects.create_user("testuser", email, password)
+        #TODO: Try to figure out how to use "email" instead of "username" to login,
+        # as I have set the USERNAME_FIELD to "email" in the User model
+        response = self.client.post(
+            reverse("accounts:login"),
+            {"username": email, "password": password},
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertContains(self.client.get(response.url), "Hello World")
