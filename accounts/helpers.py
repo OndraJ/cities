@@ -38,5 +38,5 @@ def confirm_email(request, user):
         body=email_body,
         to=[user.email],
     )
-    email.content_subtype = "html"
+    # email.content_subtype = "html"
     email.send(fail_silently=False)
