@@ -1,7 +1,10 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 
 from accounts.models import User
+from accounts.helpers import TokenGenerator
 
 
 class UserRegistrationTestCase(TestCase):
@@ -54,3 +57,27 @@ class UserRegistrationTestCase(TestCase):
         )
         self.assertEqual(response.status_code, 302)
         self.assertContains(self.client.get(response.url), "Hello World")
+
+
+class EmailConfirmationTestCase(TestCase):
+    def test_email_confirmation(self):
+        email = "testemail@email.com"
+        self.client.post(
+            reverse("accounts:register"),
+            {
+                "username": "testuser",
+                "email": email,
+                "password1": "testpassword",
+                "password2": "testpassword",
+            },
+        )
+        user = User.objects.get(email="testemail@email.com")
+        self.assertFalse(user.is_active)
+
+        uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+        token = TokenGenerator().make_token(user)
+        self.client.get(
+            reverse("accounts:email_confirm", kwargs={"uidb64": uidb64, "token": token})
+        )
+        user.refresh_from_db()
+        self.assertTrue(user.is_active)
