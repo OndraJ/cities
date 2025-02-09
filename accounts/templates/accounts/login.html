@@ -1,25 +1,12 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <title>Login</title>
-    </head>
-    <body class="login-container">
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Login</button>
-            <a href="{% url 'accounts:register' %}">Don't have an account? Register here.</a>
-        </form>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block body_class %}login-container{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+        <a href="{% url 'accounts:register' %}">Don't have an account? Register here</a>
+        <a href="{% url 'accounts:password_reset' %}">Did you forget your password? Click here</a>
+    </form>
+{% endblock %}
