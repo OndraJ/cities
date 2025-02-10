@@ -121,3 +121,8 @@ a {
     background-color: #ff9800;
     color: white;
 }
+
+a.login-link {
+    text-decoration: underline;
+    color: #345cd3;
+}
